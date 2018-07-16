@@ -5,7 +5,7 @@ const cors = require('cors');
 const jsonParser = require('body-parser').json;
 const app = connect();
 
-
+const PASS = '12345678';
 const PORT = 4303;
 
 async function Start() {
@@ -36,7 +36,7 @@ async function Start() {
 
     app.use(cors({methods: ['POST']}));
     app.use(jsonParser());
-    app.use((req, res, next) => req.headers['x-auth'] == PASS ? next() : res.statusCode = 403);
+    app.use((req, res, next) => req.headers['x-auth'] === PASS ? next() : res.statusCode = 403);
     app.use(stream.middleware());
     app.listen(PORT);
 
