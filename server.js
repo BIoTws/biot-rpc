@@ -1,5 +1,10 @@
 const core = require('biot-core');
 const net = require('./core');
+const connect = require('connect');
+const cors = require('cors');
+const jsonParser = require('body-parser').json;
+const app = connect();
+
 
 const PORT = 4303;
 
@@ -29,7 +34,11 @@ async function Start() {
 		core.listCorrespondents
 	]);
 
-	stream.http().listen(PORT);
+    app.use(cors({methods: ['POST']}));
+    app.use(jsonParser());
+    app.use((req, res, next) => req.headers['x-auth'] == PASS ? next() : res.statusCode = 403);
+    app.use(stream.middleware());
+    app.listen(PORT);
 
 	return 'Ok';
 };

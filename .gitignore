@@ -113,3 +113,8 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+.idea/biot-rpc-1.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+yarn.lock
